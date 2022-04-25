@@ -1,12 +1,7 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-// import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div class="theme-container">
     <header class="navbar">
+      <div class="sidebar-btn" @click="showSidebar">三</div>
       <router-link to="/" class="home-link">OHO-TIPS GUIDE</router-link>
       <div class="navbar-links">
         <nav class="nav-links">
@@ -27,15 +22,34 @@
   </div>
 </template>
 
+<script setup>
+  import { getCurrentInstance } from 'vue'
+  const name = "Oho-guide APP"
+  const { proxy } = getCurrentInstance();
+
+  let hasShowSidebar = false;
+  function showSidebar(event) {
+    let themeContainer = document.getElementsByClassName('theme-container')[0]
+
+    if (!proxy.$_C.hasClass(themeContainer, 'sidebar-open')) {
+      proxy.$_C.addClass(themeContainer, 'sidebar-open')
+      ohoTips().success('打开侧边栏');
+    } else {
+      proxy.$_C.removeClass(themeContainer, 'sidebar-open')
+    }
+  }
+</script>
+
 <style>
 a {
   font-weight: 600;
   text-decoration: none;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+body {
+  font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+  /* font-family: Inter,Roboto,Oxygen,Fira Sans,Helvetica Neue,sans-serif; */
+  -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: grayscale;
   color: #3f4d47;
   font-size: 0.16rem;
@@ -46,13 +60,18 @@ a {
   top: 0;
   left: 0;
   right: 0;
-  height: 0.5rem;
+  height: 0.6rem;
   padding: 0.05rem 0.1rem;
-  line-height: 0.4rem;
+  line-height: 0.5rem;
   color: #3f4d47;
   background-color: #fff;
   box-sizing: border-box;
   border-bottom: 1px solid #ececec;
+}
+
+.navbar .sidebar-btn {
+  display: none;
+  cursor: pointer;
 }
 
 .navbar .home-link {
@@ -65,7 +84,7 @@ a {
   top: 0;
   right: 0.3rem;
   padding: 0.05rem 0.1rem;
-  line-height: 0.4rem;
+  line-height: 0.5rem;
 }
 
 a.nav-link {
@@ -94,7 +113,7 @@ a.nav-link:hover {
   position: fixed;
   z-index: 10;
   margin: 0;
-  top: 0.5rem;
+  top: 0.6rem;
   left: 0;
   bottom: 0;
   box-sizing: border-box;
@@ -112,7 +131,7 @@ a.nav-link:hover {
 }
 
 .sidebar > .sidebar-links > li > a.sidebar-link {
-  font-size: 1.2em;
+  font-size: .18;
   line-height: 1.6;
   font-weight: 700;
 }
@@ -141,8 +160,72 @@ a.sidebar-link:hover {
 }
 
 .main-page {
-  padding-top: 0.5rem;
+  padding-top: 0.6rem;
   padding-left: 2rem;
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
+}
+
+.main-container {
+  padding: .3rem 1rem;
+}
+
+.main-container .main-header {
+  margin-bottom: .1rem;
+}
+
+.main-page p,
+.main-page ol>li {
+  line-height: 1.6;
+}
+
+.main-page ol>li {
+  font-size: .14rem;
+}
+
+@media (min-width: 1440px) {
+  .main-container {
+    padding: .3rem 2rem;
+  }
+}
+
+@media (max-width: 1080px) {
+  .main-container {
+    padding: .3rem .5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-container {
+    padding: .3rem .2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar .sidebar-btn {
+    display: inline-block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform .2s ease;
+  }
+
+  .sidebar-open .sidebar{
+    transform: translateX(0);
+  }
+
+  .main-page {
+    padding-left: 0;
+  }
+
+  .main-container {
+    padding: .2rem .5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: .3rem .2rem;
+  }
 }
 </style>

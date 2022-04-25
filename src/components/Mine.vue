@@ -1,20 +1,20 @@
 <template>
   <div id="mine">
-      <div>我的</div>
+    <div>我的</div>
   </div>
 </template>
 
 <script>
 export default {
-    name: "Mine"
-}
+  name: "Mine",
+};
 </script>
 
 <style>
 #mine {
-    min-height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
