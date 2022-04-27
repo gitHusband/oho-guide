@@ -1,20 +1,52 @@
 <template>
   <div class="theme-container">
     <header class="navbar">
-      <div class="sidebar-btn" @click="showSidebar">三</div>
-      <router-link to="/" class="home-link">OHO-TIPS GUIDE</router-link>
+      <div class="navbar-header">
+        <div class="sidebar-btn" @click="showSidebar"><expand /></div>
+        <router-link to="/" class="home-link"><img src="./assets/images/oho.jpeg" class="logo" /> <span>OhO</span></router-link>
+      </div>
       <div class="navbar-links">
-        <nav class="nav-links">
-          <router-link to="/home" class="nav-link">首页</router-link>
-          <router-link to="/mine" class="nav-link">我的</router-link>
-        </nav>
+        <el-menu
+          :default-active="1"
+          class="el-menu-demo"
+          mode="horizontal"
+          ellipsis=false
+          @select="handleSelect"
+        >
+          <el-sub-menu index="1">
+            <template #title>起步</template>
+            <el-menu-item index="1-1"><router-link to="/home" class="sidebar-link">介绍</router-link></el-menu-item>
+            <el-menu-item index="1-2"><router-link to="/mine" class="sidebar-link">我的</router-link></el-menu-item> 
+          </el-sub-menu>
+          <el-menu-item index="2">配置</el-menu-item>
+        </el-menu>
       </div>
     </header>
     <aside class="sidebar">
-      <ul class="sidebar-links">
+      <el-menu
+        default-active="1-1"
+        class="el-menu-vertical-demo"
+        :collapse="isCollapse"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+        <el-sub-menu index="1">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>起步</span>
+          </template>
+          <el-menu-item index="1-1"><router-link to="/home" class="sidebar-link">介绍</router-link></el-menu-item>
+          <el-menu-item index="1-2"><router-link to="/mine" class="sidebar-link">我的</router-link></el-menu-item> 
+        </el-sub-menu>
+        <el-menu-item index="2">
+          <el-icon><icon-menu /></el-icon>
+          <template #title><router-link to="/config" class="sidebar-link">配置</router-link></template>
+        </el-menu-item>
+      </el-menu>
+      <!-- <ul class="sidebar-links">
         <li><router-link to="/home" class="sidebar-link">首页</router-link></li>
         <li><router-link to="/mine" class="sidebar-link">我的</router-link></li>
-      </ul>
+      </ul> -->
     </aside>
     <main class="main-page">
       <router-view></router-view>
@@ -23,9 +55,27 @@
 </template>
 
 <script setup>
-  import { getCurrentInstance } from 'vue'
+  import {
+    Document,
+    Menu as IconMenu,
+    Location,
+    Setting,
+    Expand,
+  } from '@element-plus/icons-vue'
+  import { getCurrentInstance, ref } from 'vue'
   const name = "Oho-guide APP"
   const { proxy } = getCurrentInstance();
+
+  const isCollapse = ref(false)
+  const handleOpen = (key, keyPath) => {
+    console.log(key, keyPath)
+  }
+  const handleClose = (key, keyPath) => {
+    console.log(key, keyPath)
+  }
+  const handleSelect = (key, keyPath) => {
+    console.log(key, keyPath)
+  }
 
   let hasShowSidebar = false;
   function showSidebar(event) {
@@ -46,6 +96,10 @@ a {
   text-decoration: none;
 }
 
+:root {
+  --el-font-size-base: .14rem;
+}
+
 body {
   font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
   /* font-family: Inter,Roboto,Oxygen,Fira Sans,Helvetica Neue,sans-serif; */
@@ -61,6 +115,7 @@ body {
   left: 0;
   right: 0;
   height: 0.6rem;
+  z-index: 100;
   padding: 0.05rem 0.1rem;
   line-height: 0.5rem;
   color: #3f4d47;
@@ -69,23 +124,54 @@ body {
   border-bottom: 1px solid #ececec;
 }
 
+.navbar .navbar-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 4rem;
+  height: .6rem;
+  padding: 0.05rem 0.3rem;
+  line-height: 0.5rem;
+}
+
 .navbar .sidebar-btn {
+  position: absolute;
+  top: .15rem;
   display: none;
+  width: 0.3rem;
+  height: 0.3rem;
   cursor: pointer;
 }
 
+.navbar .logo {
+  height: .4rem;
+  vertical-align: top;
+}
+
 .navbar .home-link {
-  margin-left: 0.1rem;
+  margin-left: 0.05rem;
   color: #3f4d47;
 }
 
 .navbar .navbar-links {
   position: absolute;
   top: 0;
-  right: 0.3rem;
-  padding: 0.05rem 0.1rem;
+  right: 0;
+  z-index: 99;
+  /* width: calc(100% - 2rem); */
+  width: 100%;
+  height: 0.6rem;
   line-height: 0.5rem;
 }
+.navbar .navbar-links .el-menu {
+  --el-menu-item-height: .56rem;
+}
+.navbar .navbar-links .el-menu--horizontal {
+  justify-content: flex-end;
+  padding-right: 0.3rem;
+}
+
 
 a.nav-link {
   color: #3f4d47;
@@ -98,7 +184,7 @@ a.nav-link + a.nav-link {
 a.nav-link.active {
   font-weight: 600;
   color: #1eb74d;
-  border-left-color: #1eb74d;
+  /* border-left-color: #1eb74d; */
 }
 
 a.nav-link:hover {
@@ -109,7 +195,7 @@ a.nav-link:hover {
 .sidebar {
   font-size: 16px;
   background-color: #fff;
-  width: 2rem;
+  width: 200px;
   position: fixed;
   z-index: 10;
   margin: 0;
@@ -117,8 +203,14 @@ a.nav-link:hover {
   left: 0;
   bottom: 0;
   box-sizing: border-box;
-  border-right: 1px solid #ececec;
+  /* border-right: 1px solid #ececec; */
   overflow-y: auto;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  /* width: 200px;
+  min-height: 400px; */
+  height: 100%;
 }
 
 .sidebar .sidebar-links {
@@ -151,7 +243,7 @@ a.sidebar-link {
 a.sidebar-link.active {
   font-weight: 600;
   color: #1eb74d;
-  border-left-color: #1eb74d;
+  /* border-left-color: #1eb74d; */
 }
 
 a.sidebar-link:hover {
@@ -203,6 +295,15 @@ a.sidebar-link:hover {
 @media (max-width: 720px) {
   .navbar .sidebar-btn {
     display: inline-block;
+  }
+
+  .navbar .home-link {
+    margin-left: .5rem;
+    color: #3f4d47;
+  }
+
+  .navbar .home-link span {
+    display: none;
   }
 
   .sidebar {

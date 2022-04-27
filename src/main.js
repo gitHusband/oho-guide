@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import VueCodeHighlight from 'vue-code-highlight'
 import './css/vue-code-highlight/themes/prism-coy-custom.css'
 // import 'vue-code-highlight/themes/prism-okaidia.css'
@@ -14,8 +16,9 @@ window.ohoTips = window.oho.ohoTips;
 window.ohoTipsPrototype = window.oho.ohoTipsPrototype;
 
 let docEl = document.documentElement,
-resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
-recalc = function () {
+    resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+    recalculateTimeoutID;
+function recalculate() {
     let clientWidth = docEl.clientWidth;
     if (!clientWidth) return;
     if (clientWidth >= 720) {
@@ -24,16 +27,23 @@ recalc = function () {
         docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
     }
 };
+function bindRecalculate() { 
+    if (recalculateTimeoutID) clearTimeout(recalculateTimeoutID)
+    recalculateTimeoutID = setTimeout(function () {
+        recalculate()
+        recalculateTimeoutID = null
+    }, 100)
+}
 
-window.addEventListener(resizeEvt, recalc, false);
-document.addEventListener('DOMContentLoaded', recalc, false);
+window.addEventListener(resizeEvt, bindRecalculate, false);
+document.addEventListener('DOMContentLoaded', bindRecalculate, false);
 
 const app = createApp(App)
 // 配置全局函数
 app.config.globalProperties.$_C = _C
 
 app.use(router)
-
-app.use(VueCodeHighlight) //registers the v-highlight directive
+    .use(ElementPlus)
+    .use(VueCodeHighlight) //registers the v-highlight directive
 
 app.mount('#app')
