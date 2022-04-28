@@ -297,6 +297,12 @@ a.sidebar-link:hover {
     border-radius: .04rem;
     margin: .20rem 0;
 }
+.tip p {
+    line-height: 1;
+}
+.tip.tip-no-border {
+    border-left: none!important;
+}
 .tip.tip-default {
     border-left: .05rem solid #a4d1ff;
     background-color: #f2fbff;
