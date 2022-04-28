@@ -1,16 +1,18 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 import Home from '../components/Home.vue'
-import Mine from '../components/Mine.vue'
+import Install from '../components/Install.vue'
+import Develop from '../components/Develop.vue'
 
 const routes = [
     { path: '/', redirect: '/home' },
     { path: '/home', component: Home },
-    { path: '/mine', component: Mine },
+    { path: '/install', component: Install },
+    { path: '/develop', component: Develop },
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes,
     linkActiveClass: 'active'
 })

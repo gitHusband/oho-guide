@@ -16,9 +16,10 @@
           <el-sub-menu index="1">
             <template #title>起步</template>
             <el-menu-item index="1-1"><router-link to="/home" class="sidebar-link">介绍</router-link></el-menu-item>
-            <el-menu-item index="1-2"><router-link to="/mine" class="sidebar-link">我的</router-link></el-menu-item> 
+            <el-menu-item index="1-2"><router-link to="/install" class="sidebar-link">安装</router-link></el-menu-item>
+            <el-menu-item index="1-2"><router-link to="/develop" class="sidebar-link">开发与构建</router-link></el-menu-item>
           </el-sub-menu>
-          <el-menu-item index="2">配置</el-menu-item>
+          <el-menu-item index="2"><router-link to="/config">配置</router-link></el-menu-item>
         </el-menu>
       </div>
     </header>
@@ -36,20 +37,21 @@
             <span>起步</span>
           </template>
           <el-menu-item index="1-1"><router-link to="/home" class="sidebar-link">介绍</router-link></el-menu-item>
-          <el-menu-item index="1-2"><router-link to="/mine" class="sidebar-link">我的</router-link></el-menu-item> 
+          <el-menu-item index="1-2"><router-link to="/install" class="sidebar-link">安装</router-link></el-menu-item>
+          <el-menu-item index="1-2"><router-link to="/develop" class="sidebar-link">开发与构建</router-link></el-menu-item>
         </el-sub-menu>
         <el-menu-item index="2">
           <el-icon><icon-menu /></el-icon>
           <template #title><router-link to="/config" class="sidebar-link">配置</router-link></template>
         </el-menu-item>
       </el-menu>
-      <!-- <ul class="sidebar-links">
-        <li><router-link to="/home" class="sidebar-link">首页</router-link></li>
-        <li><router-link to="/mine" class="sidebar-link">我的</router-link></li>
-      </ul> -->
     </aside>
     <main class="main-page">
-      <router-view></router-view>
+      <router-view class="main-container" v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
   </div>
 </template>
@@ -91,6 +93,10 @@
 </script>
 
 <style>
+h1, h2, h3, h4 {
+  margin-top: .4rem;
+}
+
 a {
   font-weight: 600;
   text-decoration: none;
@@ -101,11 +107,11 @@ a {
 }
 
 body {
-  font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
-  /* font-family: Inter,Roboto,Oxygen,Fira Sans,Helvetica Neue,sans-serif; */
-  -webkit-font-smoothing: auto;
+  /* font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif; */
+  font-family: Inter,Roboto,Oxygen,Fira Sans,Helvetica Neue,sans-serif;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #3f4d47;
+  color: #001428;
   font-size: 0.16rem;
 }
 
@@ -253,7 +259,7 @@ a.sidebar-link:hover {
 
 .main-page {
   padding-top: 0.6rem;
-  padding-left: 2rem;
+  padding-left: 200px;
   /* background-color: #f4f4f4; */
 }
 
@@ -265,13 +271,40 @@ a.sidebar-link:hover {
   margin-bottom: .1rem;
 }
 
+/* router 动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+/* router 动画 */
+
 .main-page p,
 .main-page ol>li {
   line-height: 1.6;
 }
 
 .main-page ol>li {
-  font-size: .14rem;
+  line-height: 1.7;
+  font-size: .15rem;
+}
+
+.tip {
+    padding: .08rem .16rem;
+    border-radius: .04rem;
+    margin: .20rem 0;
+}
+.tip.tip-default {
+    border-left: .05rem solid #a4d1ff;
+    background-color: #f2fbff;
+}
+.tip.tip-gray {
+    border-left: 0.05rem solid #c7c7c7;
+    background-color: #f4f4f4;
+    color: #7f7f7f;
 }
 
 @media (min-width: 1440px) {
@@ -326,7 +359,11 @@ a.sidebar-link:hover {
 
 @media (max-width: 480px) {
   .main-container {
-    padding: .3rem .2rem;
+    padding: .2rem .1rem;
+  }
+
+  .navbar .navbar-links {
+    width: 2.4rem;
   }
 }
 </style>

@@ -2,18 +2,18 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import VueCodeHighlight from 'vue-code-highlight'
-import './css/vue-code-highlight/themes/prism-coy-custom.css'
-// import 'vue-code-highlight/themes/prism-okaidia.css'
+// import './css/vue-code-highlight/themes/prism-coy-custom.css'
+import 'vue-code-highlight/themes/prism-okaidia.css'
 
 import App from './App.vue'
 import router from './router/index'
 
 import * as _C from './js/common'
-import './lib/ohoTips/css/themes/ohoTips.min.css'
-import * as _Oho from './lib/ohoTips/js/ohoTips.min'
+import './lib/ohoTips/css/themes/ohoTips.css'
+import * as oho from './lib/ohoTips/js/ohoTips.min'
 
-window.ohoTips = window.oho.ohoTips;
-window.ohoTipsPrototype = window.oho.ohoTipsPrototype;
+window.ohoTips = oho.ohoTips;
+window.ohoTipsPrototype = oho.ohoTipsPrototype;
 
 let docEl = document.documentElement,
     resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
@@ -25,6 +25,7 @@ function recalculate() {
         docEl.style.fontSize = '100px';
     } else {
         docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+        docEl.style.fontSize = '85px';
     }
 };
 function bindRecalculate() { 

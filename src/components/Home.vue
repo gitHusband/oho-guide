@@ -1,8 +1,11 @@
 <template>
-  <div id="home" class="main-container">
+  <div id="home">
     <h1>介绍</h1>
-    <p>ohoTips(读音：哦(四声)ho(二声) Tips，自己感悟)</p>
-    <p>ohoTips 消息美观，可自由方便地定位消息位置，支持任何定位。</p>
+    <p>ohoTips(读音：<b>哦</b>(四声)<b>ho</b>(二声) Tips，自己感悟)。</p>
+    <p>ohoTips 消息美观，可自由方便地定位消息位置，支持任何定位，支持多种类型，支持多种动画。因为支持任何定位，您不仅可以可以用它来实现消息提醒，也能方便定制popover 或者 tooltip</p>
+    <div class="tip tip-default">
+      <p>项目地址：<el-link type="primary" href="https://github.com/gitHusband/ohoTips/tree/v2.0.0" target="_blank">Github</el-link></p>
+    </div>
     <h2>特点</h2>
     <ol>
       <li>支持单行、多行消息，支持 DOM 消息</li>
@@ -19,57 +22,31 @@
       <li>支持浮动，使消息在页面来回浮动。支持自定义浮动函数</li>
       <li>支持自定义动画类型，支持自定义动画函数</li>
     </ol>
-    <h2>安装</h2>
-    <p>ohoTips 可以与 CommonJS、AMD 以及 script 标签使用。</p>
-    <div v-highlight>
-      <pre class="language-javascript">
-        <code>
-&lt;!--  第一种：script 标签引入 ohoTips.js, ohoTips.min.css --&gt;
-&lt;html&gt;
-    &lt;link href="../dist/ohoTips/css/themes/ohoTips.min.css" rel="stylesheet"&gt;
-    &lt;script src="../dist/ohoTips/js/ohoTips.min.js"&gt;&lt;/script&gt;
-&lt;/html&gt;
-
-// 第二种：import 导入，注意 _Oho 并没有真的导入
-import './lib/ohoTips/css/themes/ohoTips.min.css'
-import * as _Oho from './lib/ohoTips/js/ohoTips.min'</code>
-      </pre>
-    </div>
-
-    <p>本插件提供测试代码，打开 examples/index.html 即可。</p>
-    <p>您可以直接引用 ./dist 文件夹里面的文件, 这是已经构建好的文件。</p>
-    <p>如果您想要开发或者设计您喜欢的样式，可以看看 3. 开发与构建</p>
-
-    <h2>用法</h2> 
-    <div v-highlight>
-      <pre class="language-javascript">
-        <code>
-// 设置全局函数，方便调用
-window.ohoTips = window.oho.ohoTips;
-window.ohoTipsPrototype = window.oho.ohoTipsPrototype;
-
-// 用法一
-ohoTips({
-    baseElement: baseElement,           //基准元素为空或者body，则定位基于整个窗口
-    position: "top-left",               //Tip显示位置，窗口左上角
-    type: "success",                    //显示的class，可接受自定义
-    icon: false,                        //不显示图标
-    message: message,                   //Tip内容
-})
-
-// 用法二
-ohoTips().success(message, baseElement);
-
-// 用法三
-ohoTips(message, options);</code>
-      </pre>
+    <h2>开发目标</h2>
+    <ul>
+      <li>增加更多的css样式</li>
+      <li>增加更多的图标</li>
+      <li>增加更多类型的角标，目前仅有三角形（难度较高）</li>
+      <li>增加更多的消息边框，目前仅是方形（难度较高）</li>
+      <li>优化浮动效果，减少抖动</li>
+      <li>增加更多的浮动效果</li>
+      <li>增加更多的动画效果</li>
+      <li>针对图片的设计，比如鼠标悬浮则自动放大图片细节</li>
+    </ul>
+    <div class="tip tip-default">
+      <p>如果您对我的作品感兴趣的话，诚邀来自五湖四海的你共同开发ohoTips!</p>
+      <p>联系人：蛮吉是魁拔 - 707077549@qq.com</p>
     </div>
   </div>
 </template>
 
 <script setup>
-const name = "Home";
 </script>
 
-<style>
-</style>
+<style scoped>
+  ul > li {
+    line-height: 1.7;
+    /* font-size: .15rem; */
+    list-style-type: square;  
+  }
+</style>>
