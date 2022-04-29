@@ -4,11 +4,11 @@
     <p>本文跟插件的使用关系不大，跟插件的开发有关。不需要的可以直接忽略。</p>
 
     <h2>开发</h2>
-    <p>1. 本插件提供测试代码，打开 examples/index.html 即可。</p>
+    <h5>1. 本插件提供测试代码，打开 examples/index.html 即可。</h5>
     <div class="tip tip-gray tip-no-border">
       <p>每次修改 src 里面的源码，您必须重新构建 css 或者 js, 然后刷新页面。</p>
     </div>
-    <p>2. 模块热替换开发</p>
+    <h5>2. 模块热替换开发</h5>
     <highlightjs language='Shell Session' code="# 安装依赖
 $ npm install -save-dev
 # 运行此命令，将自动打开 examples/index.html，任何修改都无所刷新页面
@@ -18,7 +18,7 @@ $ npm run start" />
     </div>
 
     <h2>CSS 构建</h2>
-    <p>目前提供了两种样式，ohoTips.scss 和 ohoTips-light.scss</p>
+    <p>目前提供了两种样式，<code>ohoTips.scss</code> 和 <code>ohoTips-light.scss</code></p>
     <div class="tip tip-gray tip-no-border">
       <p>ohoTips.scss - 默认样式</p>
       <p>ohoTips-light.scss - 只是改了一点点默认样式，您可参考这个定制您喜欢的样式</p>
@@ -32,7 +32,7 @@ $ sass src/css/themes/ohoTips.scss dist/ohoTips/css/themes/ohoTips.min.css --sty
     </div>
 
     <h2>JS 构建</h2>
-    <p>目前提供了两种样式，ohoTips.scss 和 ohoTips-light.scss</p>
+    <p></p>
     <highlightjs language='Shell Session' code="$ npm install -save-dev   // 安装依赖
 
 $ npm run dev             // 构建调试版JS

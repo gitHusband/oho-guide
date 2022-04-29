@@ -102,6 +102,12 @@ a {
   text-decoration: none;
 }
 
+code {
+    border-radius: .04rem;
+    padding: 0.01rem 0.05rem;
+    background-color: #ebebeb;
+}
+
 :root {
   --el-font-size-base: .14rem;
 }
@@ -296,10 +302,16 @@ a.sidebar-link:hover {
     padding: .08rem .16rem;
     border-radius: .04rem;
     margin: .20rem 0;
+    font-size: .15rem;
 }
 .tip p {
-    line-height: 1;
+    line-height: 1.5;
+    margin-block-start: .1rem;
+    margin-block-end: .1rem;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
+
 .tip.tip-no-border {
     border-left: none!important;
 }
@@ -315,7 +327,7 @@ a.sidebar-link:hover {
 
 @media (min-width: 1440px) {
   .main-container {
-    padding: .3rem 2rem;
+    padding: .3rem 2.5rem;
   }
 }
 

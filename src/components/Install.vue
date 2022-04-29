@@ -2,7 +2,7 @@
   <div id="install">
     <h1>安装</h1>
     <p>从 <el-link type="primary" href="https://zhuanlan.zhihu.com/p/113009496" target="_blank">Github</el-link> 上下载代码，自行托管。</p>
-    <p>ohoTips 可以与 <el-link type="primary" href="https://zhuanlan.zhihu.com/p/113009496" target="_blank">CommonJS</el-link>、<el-link type="primary" href="https://www.jianshu.com/p/129f7e8703d0" target="_blank">AMD</el-link> 以及 script 标签使用。</p>
+    <p>ohoTips 可以与 <el-link type="primary" href="https://zhuanlan.zhihu.com/p/113009496" target="_blank">CommonJS</el-link>、<el-link type="primary" href="https://www.jianshu.com/p/129f7e8703d0" target="_blank">AMD</el-link> 以及 <code>script</code> 标签使用。</p>
     <highlightjs language='JavaScript' code='&lt;!--  第一种：script 标签引入 ohoTips.js, ohoTips.min.css --&gt;
 &lt;html&gt;
     &lt;link href="./lib/ohoTips/css/themes/ohoTips.min.css" rel="stylesheet"&gt;
